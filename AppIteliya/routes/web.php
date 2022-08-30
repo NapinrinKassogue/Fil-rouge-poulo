@@ -8,6 +8,9 @@ use App\Http\Controllers\AdministrateurController;
 use App\Models\Employes;
 use App\Http\Controllers\EmployesController;
 use App\Http\Controllers\PagesController;
+use App\Models\Permissions;
+use App\Http\controllers\PermissionsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +24,14 @@ use App\Http\Controllers\PagesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcomeiteliya');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/listeEmployes', [App\Http\Controllers\HomeController::class, 'liste'])->name('listeEmployes');
-Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
+Route::get('/welcomeiteliya', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcomeiteliya');
 
 
 
@@ -50,4 +53,17 @@ Route::resource('/employes', EmployesController::class);
 
 Route::get('/heure-register', [App\Http\Controllers\PagesController::class, 'viewHeure'])->name('pointages.heuresCreate');
 Route::post('/register-heure',[App\Http\Controllers\PagesController::class, 'enregistrerHeures'])->name('heure.create');
-  
+
+
+Route::get('/permission-register', [App\Http\Controllers\PermissionsController::class, 'viewpermission'])->name('permission');
+Route::post('/register-permission', [App\Http\Controllers\PermissionsController::class, 'registerpermission'])->name('permission.create');
+Route::get('/listepermission', [App\Http\Controllers\PermissionsController::class, 'listePermission'])->name('administrateurs.lespermissions');
+Route::get('/permissions', [App\Http\Controllers\EmployesController::class,'viewpermission'])->name('employes.permissionCreate');
+
+
+
+Route::get('/absence-register', [App\Http\Controllers\AbsencesController::class, 'viewabsence'])->name('absence');
+Route::post('/register-absence', [App\Http\Controllers\AbsencesController::class, 'registerabsence'])->name('absence.create');
+Route::get('/justifierabsence', [App\Http\Controllers\AbsencesController::class, 'listeAbsence'])->name('administrateurs.justifierAbsence');
+Route::get('/absences', [App\Http\Controllers\EmployesController::class,'viewabsence'])->name('absences.absenceCreate');
+Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');

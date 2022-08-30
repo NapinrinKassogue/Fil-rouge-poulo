@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Administrateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+ use App\Http\Controllers\Response;
+use Facade\FlareClient\Http\Response as HttpResponse;
 
 class HomeController extends Controller
 {
@@ -55,6 +57,16 @@ class HomeController extends Controller
     public function welcome()
 
     {
-        return view('welcome');
+        return view('welcomeiteliya');
     }
+
+
+
+   
+    
+
+
+    
 }
+
+

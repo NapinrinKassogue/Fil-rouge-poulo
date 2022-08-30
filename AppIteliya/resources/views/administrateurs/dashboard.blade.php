@@ -53,19 +53,23 @@
                
             </ul>
           <li><a class="nav-link scrollto" href="#">Tableau Récaptulatif</a></li>
-          <li><a class="nav-link scrollto" href="#">Services</a></li>
-          <li><div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+          <li><a class="nav-link scrollto" href="{{ route('administrateurs.lespermissions')}}">Permissions</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('administrateurs.justifierAbsence')}}">justifier Absences</a></li>
+          <li class="dropdown deconne"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                <a class="dropdown-item deconne" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Déconnexion') }}
+                                        
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div><li>
-        
+                  
+                </ul>
       </nav><!-- .navbar -->
 
     </div>
@@ -81,7 +85,7 @@
         
         //PLF-/
         var position=0;
-        var msg="BIENVENUE AU BUREAU BIENVENUE AU BUREAU BIENVENUE AU BUREAU ";
+        var msg="BIENVENUE AU BUREAU";
         var msg="     "+msg;
         var longue=msg.length;
         var fois=(40/msg.length)+1;
@@ -90,7 +94,7 @@
         document.form1.deftext.value=msg.substring(position,position+70);
         position++;
         if(position == longue) position=0;
-        setTimeout("textdefil()",200);
+        setTimeout("textdefil()",400);
         }
         window.onload = textdefil;
         //-->

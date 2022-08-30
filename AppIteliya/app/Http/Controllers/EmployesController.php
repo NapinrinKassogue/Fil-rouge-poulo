@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Employes;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployesController extends Controller
 {
@@ -58,7 +60,7 @@ class EmployesController extends Controller
                     'statut' => 'employes' 
                 ]
                 );
-                return view('/welcome');
+                return view('/welcomeiteliya');
           }
         }
     }
@@ -121,6 +123,28 @@ class EmployesController extends Controller
         return view('administrateurs.listeEmployes', compact('listeEmployes'));
         // return redirect('administrateurs.listeEmployes');
     }
+
+
+    public function viewpermission()
+    {
+        return view('employes.permissionCreate');
+    }
+
+
+    public function viewabsence()
+    {
+        return view('employes.absenceCreate');
+    }
+
+    public function auth()
+    {
+        $user = Auth::user();
+
+        Auth()->user()->name;
+    
+    }
+
+    
  
     
 

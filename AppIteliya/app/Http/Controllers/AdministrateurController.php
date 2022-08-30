@@ -65,7 +65,17 @@ class AdministrateurController extends Controller
     {
         return view('administrateurs.dashboard');
     }
+    
 
+    public function show($id)
+    {
+        
+        $voir = Administrateur::findOrFail($id);
+        return view('permissions.show', compact('voir'));
+    }
+
+
+    
 
     
 
