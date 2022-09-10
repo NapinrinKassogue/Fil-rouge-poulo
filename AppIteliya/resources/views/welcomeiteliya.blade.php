@@ -30,12 +30,12 @@
         </div>
         <div class="content">
 
-            <h1>“Tout salaire mérite travail.”<br><span>Développement</span> <br>Course</h1>
-            <p class="par">Choisissez un travail que vous aimez et  
-                  <br> vous n'aurez pas à travailler un seul jour de votre vie. 
+            <h1>“Tout salaire mérite travail.”<br><span></span> <br></h1>
+            <p class="par"> 
+                  <br> 
                 <br> </p>
 
-                <button class="cn"><a href="#"></a></button>
+                <!-- <button class="cn"><a href="#"></a></button> -->
 
                 <form method="POST" action="{{ route('login') }}">
                 @csrf

@@ -4,22 +4,24 @@
 }
 .adess{
     bottom: 15px;
+    color: #000;
 }
 .login{
     width: 213px;
     height: 40px;
-    background-color: #ff7200;
+    background-color: green;
     margin-left: 50px;
     border-radius: 20px;
     color: white;
     cursor: pointer;
+    border: none;
 }
 a{
     text-decoration: none;
-    color: #ff7200;
+    color:#000;
 }
 .remember{
-   color: white;
+   color: #000;
 }
 .deroul{
     color: #000;
@@ -27,6 +29,7 @@ a{
 *{
     margin: 0;
     padding: 0;
+    color: #000;
 }
 
 .main{
@@ -191,14 +194,14 @@ ul li a:hover{
 }
 
 .content span{
-    color: #ff7200;
+    color: white;
     font-size: 65px
 }
 
 .form{
     width: 300px;
     height: 380px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
+    background: #C7EBC3;
     position: absolute;
     top: -80px;
     left: 800px;
@@ -211,7 +214,7 @@ ul li a:hover{
     width: 220px;
     font-family: sans-serif;
     text-align: center;
-    color: #ff7200;
+    color: black;
     font-size: 22px;
     background-color: #fff;
     border-radius: 10px;

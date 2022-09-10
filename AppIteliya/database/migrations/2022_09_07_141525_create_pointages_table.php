@@ -15,9 +15,9 @@ class CreatePointagesTable extends Migration
     {
         Schema::create('pointages', function (Blueprint $table) {
             $table->id();
-            $table->timestamps('heure-arrivee');
-            $table->timestamps('heure-depart');
-            $table->time('duree');
+            $table->string('heure_arrivee');
+            $table->string('heure_depart')->nullable();
+            $table->string('presence');
             $table->unsignedBigInteger('userId');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

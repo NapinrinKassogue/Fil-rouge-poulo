@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employes;
 use App\Models\Permissions;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionsController extends Controller
 {
@@ -12,43 +14,39 @@ class PermissionsController extends Controller
 
     public function viewpermission()
     {
-        return view('permissions.permissionCreate');
+        $permis =  Employes::all();
+        $permissions = Permissions::all();
+        return view('permissions.permissionCreate', compact('permissions', 'permis'));
     }
 
     public function registerpermission(Request $request)
     {
+        $user = Auth::User();
         $validation = $request->validate(
             [
-                'nom' => ['required', 'string', 'max:100'],
-                'prenom' => ['required', 'string', 'max:150'],
-                'email' => ['required', 'string', 'max:100'],
-                'motif' => ['required', 'string', 'max:500'],
+                'datedebut' => ['required', 'date'],
+                'datefin' => ['required', 'date'],
+                'motif' => ['required', 'string', 'max:100'],
+                'userId' => ['required', 'integer'],
+
                 
             ]
         );
 
         if($validation)
 
-        $user = User::create(
-            [
-              'name' => $request['prenom'],
-              'email' => $request['email'],
-              'password' => bcrypt($request['password']),
-              'statut' => 'employes' 
-            ]
-            );
    
         {
+            $user = Auth::User();
             $permis = Permissions::create(
                 [
-                    'nom' => $request['nom'],
-                    'prenom' => $request['prenom'],
-                    'email' => $request['email'],
+                    'datedebut' => $request['datedebut'],
+                    'datefin' => $request['datefin'],
                     'motif' => $request['motif'], 
-                    'userId' =>$user->id,
+                    'userId' =>$request['userId'],
                 ]
                 );
-                return view('/welcomeiteliya');
+                return view('/employes.dashboard');
           }
     }
 

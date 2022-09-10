@@ -2,40 +2,135 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pointages;
+use App\Models\Employes;
+use App\Models\Pointage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PointagesController extends Controller
 {
-    //
-
-    public function  viewHeure()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        return view('pointages.heuresCreate');
+
+        $pointer=Pointage::where('presence', '=','Present')->get();
+        return view('pointages.pointagesCreate', compact('pointer'));
     }
 
-    public function enregistrerHeures(Request $request)
+    public function touslespointages()
     {
+        $employes = Employes:: all();
+        $touspointages=Pointage::where('presence', '=','Pointé')->get();
+        return view('pointages.touslespointages', compact('touspointages','employes'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request )
+    {
+        
+        $user = Auth::User();
         $validation = $request->validate(
             [
-                'heure-arrivee' => ['timestamps'],
-                'heure-depart' => ['timestamps'],
-                'duree' => ['time'],
+                'presence' => ['required'],
+
                 
             ]
         );
+
+        if($validation)
+
+   
+        {
+            $user = Auth::User();
+            $permis = Pointage::create(
+                [
+                    'presence' => $request['presence'],
+                    'userId'=> $user->id,
+                ]
+                );
+                return redirect('/pointages');
+          }
     
-        $administrateurs = Pointages::create(
-            [
-                'heure-arrivee' => $request['timestamps'],
-                'heure-depart' => $request['timestamps'],
-                'duree' => $request['time'], 
-            ]
-            );
-            return view('/welcome');
-    
+
+
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-            
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $welcome = Pointage::findOrfail($id);
+        return view('pointages.pointermondepart',compact('welcome'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $depart = $request->validate(
+            [
+                'presence'=>'required',
+            ]);
+
+        if($depart);
+        {
+           $aurevoir = Pointage::whereId($id)->update([
+
+            'presence'=>'Pointé',
+           ]);
+        }    
+        return redirect('/pointages')->with('success','Votre pointage du jour est maintenant effectué!!!');
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }

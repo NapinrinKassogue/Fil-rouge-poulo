@@ -55,6 +55,12 @@
                 <li><a class="nav-link scrollto" href="#">Tableau_Récaptulatif</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('employes.permissionCreate')}}">Demande de Permission</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('absences.absenceCreate')}}">JustifierAbsence</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('pointages.pointagesCreate')}}">Pointages</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('pointages.detoulemonde')}}">Tous les Pointages</a></li>
+
+                
+
+
                 <ul class="">
               <li class="dropdown deconnee"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
@@ -108,11 +114,9 @@
         height: 60px; font-size: 40px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; width: 1124px; border:none">
         
         </div>
-        </form>
-              
+        </form>       
   </div>
-  
-        
+ 
     
      
   </main><!-- End #main -->

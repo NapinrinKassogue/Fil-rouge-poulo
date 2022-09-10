@@ -47,12 +47,12 @@
               <li class="dropdown"><a href="#"><span>EMPLOYES</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   <li class="deroul"><a href="{{ route('administrateurs.listeEmployes')}}">Tous les employés</a></li>
-                  <li class="deroul" ><a href="#">Liste des actifs </a></li>
+                  <li class="deroul" ><a href="{{ route('pointages.pointagesCreate')}}">Liste des actifs </a></li>
                   <li class="deroul"><a href="#">Liste des inactifs</a></li>
                 </ul>
                
             </ul>
-          <li><a class="nav-link scrollto" href="#">Tableau Récaptulatif</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('pointages.detoulemonde')}}">Tous les Pointages</a></li>
           <li><a class="nav-link scrollto" href="{{ route('administrateurs.lespermissions')}}">Permissions</a></li>
           <li><a class="nav-link scrollto" href="{{ route('administrateurs.justifierAbsence')}}">justifier Absences</a></li>
           <li class="dropdown deconne"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-right"></i></a>

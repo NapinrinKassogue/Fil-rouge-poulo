@@ -48,6 +48,12 @@ class User extends Authenticatable
         return $this->hasMany(Permissions::class, 'userId');
     }
 
+    public function Pointages()
+    {
+        return $this->hasMany(Pointage::class, 'userId');
+    }
+
+
 
 
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\EmployesController;
 use App\Http\Controllers\PagesController;
 use App\Models\Permissions;
 use App\Http\controllers\PermissionsController;
-
+use App\Http\Controllers\PointagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,10 +49,8 @@ Route::post('/register-employ',[App\Http\Controllers\EmployesController::class, 
 Route::get('/employesCreate',[App\Http\Controllers\EmployesController::class, 'ajouter'])->name('employes.employesCreate');
 Route::resource('/administrateurs', AdministrateurController::class);
 Route::resource('/employes', EmployesController::class);
+Route::resource('/pointages', PointagesController::class);
 
-
-Route::get('/heure-register', [App\Http\Controllers\PagesController::class, 'viewHeure'])->name('pointages.heuresCreate');
-Route::post('/register-heure',[App\Http\Controllers\PagesController::class, 'enregistrerHeures'])->name('heure.create');
 
 
 Route::get('/permission-register', [App\Http\Controllers\PermissionsController::class, 'viewpermission'])->name('permission');
@@ -63,7 +61,21 @@ Route::get('/permissions', [App\Http\Controllers\EmployesController::class,'view
 
 
 Route::get('/absence-register', [App\Http\Controllers\AbsencesController::class, 'viewabsence'])->name('absence');
-Route::post('/register-absence', [App\Http\Controllers\AbsencesController::class, 'registerabsence'])->name('absence.create');
+Route::post('/register-absence/{id}', [App\Http\Controllers\AbsencesController::class, 'registerabsence'])->name('absence.create');
+
 Route::get('/justifierabsence', [App\Http\Controllers\AbsencesController::class, 'listeAbsence'])->name('administrateurs.justifierAbsence');
 Route::get('/absences', [App\Http\Controllers\EmployesController::class,'viewabsence'])->name('absences.absenceCreate');
 Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');
+
+
+
+
+Route::get('/pointages', [App\Http\Controllers\PointagesController::class, 'index'])->name('pointages.pointagesCreate'); 
+Route::get('/pointagesenvoi', [App\Http\Controllers\PointagesController::class, 'store'])->name('pointages.pointagesarrivee');
+Route::get('/pointerdepart/{id}', [App\Http\Controllers\PointagesController::class, 'edit'])->name('pointages.editer');
+Route::patch('/pointerdepartupdate/{id}', [App\Http\Controllers\PointagesController::class, 'update'])->name('pointages.departupdate');
+Route::get('/listestouspointages', [App\Http\Controllers\PointagesController::class, 'touslespointages'])->name('pointages.detoulemonde');
+
+
+
+

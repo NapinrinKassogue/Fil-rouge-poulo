@@ -9,37 +9,44 @@
         <img src="{{ asset('/img/logo.jpg')}}" alt="">
       </a>
       <ul>
-           <li class="dropdow">LISTE DES PERMISSIONS</li>
+           <li class="dropdow">Justifications des Absences</li>
       </ul>
         
       </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
-<table class="table-responsive">
+  <div class="card">
+  <div class="card-body">
+    <table class="table-responsive">
     <thead>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>Email</th>
+        <th>Nom_Expedit</th>
+        <th>Date_Debut</th>
+        <th>Date_Fin</th>
         <th>Fichier</th>
         <th>Motif</th>
-        <th>UserId</th>
+        <th>Id_Employés</th>
         <!-- <th>Action</th> -->
     </thead>
     <tbody>
     
-        @foreach($justifier as $absences)
+        @foreach($justifier as $justifiers)
         <tr>
-            <td>{{$absences->nom}}</td>
-            <td>{{$absences->prenom}}</td>
-            <td>{{$absences->email}}</td>
-            <td>{{$absences->fichier}}</td>
-            <td>{{$absences->motif}}</td>
-            <td>{{$absences->userId}}</td>
+          
+            <td>{{$justifiers->user->name}}</td>
+            <td>{{$justifiers->datedebut}}</td>
+            <td>{{$justifiers->datefin}}</td>
+            <td>{{$justifiers->fichier}}</td>
+            <td>{{$justifiers->motif}}</td>
+            <td>{{$justifiers->user->id}}</td>
         </tr>
         @endforeach
     </tbody>
 </table>
+  </div>
+</div>
+
 <div>
   <a href="{{ URL::previous() }}" class="btn btn-default"><BUtton class="listeretour">Retour</BUtton></a>
 </div>
+ 

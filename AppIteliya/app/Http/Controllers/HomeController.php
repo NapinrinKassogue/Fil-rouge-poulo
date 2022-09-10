@@ -6,6 +6,7 @@ use App\Models\Administrateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
  use App\Http\Controllers\Response;
+use App\Models\Employes;
 use Facade\FlareClient\Http\Response as HttpResponse;
 
 class HomeController extends Controller
@@ -32,8 +33,9 @@ class HomeController extends Controller
         // dd($user);
         if($user->statut == 'administrateur')
         {
+            $employes = Employes::all();
             $administrateur = Administrateur::Where('userId', $user->id)->first();
-            return view('administrateurs.dashboard', compact('administrateur'));
+            return view('administrateurs.dashboard', compact('administrateur', 'employes'));
         }
         elseif($user->statut == 'employes')
         {

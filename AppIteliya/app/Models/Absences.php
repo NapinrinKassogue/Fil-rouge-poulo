@@ -10,11 +10,19 @@ class Absences extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom',
-        'prenom',
-        'email',
+        'userId',
         'fichier',
         'motif',
-        'userId',
+        'datedebut',
+        'datefin',
        ];
+
+
+       public function user()
+       {
+           return $this->belongsTo(User::class, 'userId');
+       }
+    
 }
+
+

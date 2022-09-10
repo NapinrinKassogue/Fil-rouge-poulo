@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Absences;
 use App\Models\Employes;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,7 +14,11 @@ class EmployesController extends Controller
 
     public function viewEmploy()
     {
-        return view('employes.employesCreate');
+        $justifier = Employes::all();
+        $employes = Absences::all();
+        return view('employes.justifierAbsence', compact('employes', 'justifier'));  
+          
+        //return view('employes.employesCreate');
     }
 
     public function registerEmploye(Request $request)
@@ -60,7 +64,7 @@ class EmployesController extends Controller
                     'statut' => 'employes' 
                 ]
                 );
-                return view('/welcomeiteliya');
+                return view('/administrateurs.dashboard');
           }
         }
     }
@@ -119,14 +123,13 @@ class EmployesController extends Controller
             'poste'=>'required', 
         ]);
         Employes::whereId($id)->update($rafraichir);
-        $listeEmployes = Employes::all();
-        return view('administrateurs.listeEmployes', compact('listeEmployes'));
-        // return redirect('administrateurs.listeEmployes');
+        return redirect('administrateurs.listeEmployes');
     }
 
 
     public function viewpermission()
     {
+        
         return view('employes.permissionCreate');
     }
 
@@ -144,6 +147,35 @@ class EmployesController extends Controller
     
     }
 
+    
+    public function listeAbsence()
+    {
+        $justifier = Absences::all();
+        $employes = Employes::all();
+        return view('administrateurs.justifierAbsence', compact('employes', 'employes', 'justifier'));
+    }
+
+
+    public function appel()
+    {
+        $absences = Employes::all();
+        return view('employes.dashboard', compact('absences'));
+    }
+
+
+
+    public function viewHeure()
+    {
+        
+        return view('employes.pointages');
+    }
+
+
+       
+
+
+
+    
     
  
     

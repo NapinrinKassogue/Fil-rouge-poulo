@@ -2,55 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Authenticate;
 use App\Models\Absences;
+use App\Models\Employes;
+use App\Models\JustifierAbsences;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AbsencesController extends Controller
 {
     //
 
-    public function viewabsence()
+    public function viewabsence($id)
     {
-        return view('absences.absenceCreate');
+        $user = User::find($id);
+        $justifier = Employes::all();
+        return view('absences.absenceCreate', compact('justifier', 'user'));
     }
 
     public function registerabsence(Request $request)
     {
+        $user = Auth::User();
         $validation = $request->validate(
             [
-                'nom' => ['required', 'string', 'max:100'],
-                'prenom' => ['required', 'string', 'max:150'],
-                'email' => ['required', 'string', 'max:100'],
-                'fichier' => ['required', 'string', 'max:100'],
+                'datedebut' => ['required', 'date'],
+                'datefin' => [ 'required', 'date'],
+                'fichier'  => 'required|mimes:pdf|max:3000',
                 'motif' => ['required', 'string', 'max:500'],
+                'userId' => ['required', 'integer'],
                 
             ]
         );
 
         if($validation)
-
-        $user = User::create(
-            [
-              'name' => $request['prenom'],
-              'email' => $request['email'],
-              'password' => bcrypt($request['password']),
-              'statut' => 'employes' 
-            ]
-            );
    
         {
+            $user = Auth::User();
+            $fileName = time().'.'.$request->fichier->extension();
+            $request->fichier->move(public_path('images/piècejustificatif'), $fileName);
             $absence = Absences::create(
-                [
-                    'nom' => $request['nom'],
-                    'prenom' => $request['prenom'],
-                    'email' => $request['email'],
-                    'fichier' => $request['fichier'],
+                [  
+                    'datedebut' => $request['datedebut'],
+                    'datefin' => $request['datefin'],               
+                    'fichier' => '$fileName',
+                    'userId' =>$request['userId'],
                     'motif' => $request['motif'], 
-                    'userId' =>$user->id,
+                    
                 ]
                 );
-                return view('/welcome');
+                return view('/employes.dashboard');
           }
     }
 
@@ -58,10 +59,10 @@ class AbsencesController extends Controller
 
     public function listeAbsence()
     {
-        $justifier = absences::all();
+       
+       
+        $justifier = Absences::all();
+
         return view('administrateurs.justifierAbsence', compact('justifier'));
     }
-
-
-   
 }

@@ -5,22 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Permissions extends Model
+class Pointage extends Model
 {
     use HasFactory;
 
     protected $fillable = 
     [
         'userId',
-        'motif',
-        'datedebut',
-        'datefin',
+        'presence',
+        'jour',
 
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'userId');
+        return $this->belongsTo('App\Models\User','userId');
     }
- 
 }

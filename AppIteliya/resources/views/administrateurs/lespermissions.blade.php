@@ -19,21 +19,21 @@
 <table class="table-responsive">
     <thead>
         <th>Nom</th>
-        <th>Prenom</th>
-        <th>Email</th>
+        <th>Date_Debut</th>
+        <th>Date_Fin</th>
         <th>Motif</th>
-        <th>UserId</th>
+        <th>Id_employes</th>
         <!-- <th>Action</th> -->
     </thead>
     <tbody>
     
         @foreach($lespermissions as $permissions)
         <tr>
-            <td>{{$permissions->nom}}</td>
-            <td>{{$permissions->prenom}}</td>
-            <td>{{$permissions->email}}</td>
+            <td>{{$permissions->user->name}}</td>
+            <td>{{$permissions->datedebut}}</td>
+            <td>{{$permissions->datefin}}</td>
             <td>{{$permissions->motif}}</td>
-            <td>{{$permissions->userId}}</td>
+            <td>{{$permissions->user->id}}</td>
         </tr>
         @endforeach
     </tbody>

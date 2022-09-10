@@ -8,16 +8,32 @@
                 <div class="card-header">{{ __('Justifier Absence') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('absence.create') }}">
+                    <form method="POST" action="{{ route('absence.create') }}" enctype="multipart/form-data">
+
+                    @if(count($errors) > 0)
+                        <div class=" alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>    
+
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            <p>{{ session('success') }}</p>
+                        </div> 
+                        @endif
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="nom" class="col-md-4 col-form-label text-md-end">{{ __('Nom') }}</label>
+                            <label for="datedebut" class="col-md-4 col-form-label text-md-end">{{ __('Date_debut_absence') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nom" type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus>
+                                <input id="datedebut" type="date" name="datedebut" class="form-control @error('datedebut') is-invalid @enderror" name="datedebut" value="{{ old('datedebut') }}" required autocomplete="datedebut" autofocus>
 
-                                @error('nom')
+                                @error('datedebut')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -26,40 +42,23 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="prenom" class="col-md-4 col-form-label text-md-end">{{ __('Prenom') }}</label>
+                            <label for="datefin" class="col-md-4 col-form-label text-md-end">{{ __('Date_fin_absence') }}</label>
 
                             <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value="{{ old('prenom') }}" required autocomplete="prenom" autofocus>
+                                <input id="datefin" type="date" name="datefin" class="form-control @error('datefin') is-invalid @enderror" name="datefin" value="{{ old('datefin') }}" required autocomplete="datefin" autofocus>
 
-                                @error('prenom')
+                                @error('datefin')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
                         <div class="row mb-3">
                             <label for="motif" class="col-md-4 col-form-label text-md-end">{{ __('Fichier') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fichier" type="file" class="form-control @error('fichier') is-invalid @enderror" name="fichier" value="{{ old('fichier') }}" required autocomplete="fichier" autofocus>
+                                <input id="fichier" type="file" name="fichier" class="form-control @error('fichier') is-invalid @enderror" name="fichier" value="{{ old('fichier') }}" required autocomplete="fichier" autofocus>
 
                                 @error('fichier')
                                     <span class="invalid-feedback" role="alert">
@@ -68,13 +67,14 @@
                                 @enderror
                             </div>
                         </div>
+                        <input type="integer" hidden name="userId" value="{{ Auth::user()->id }}">
 
                          <div class="row mb-3">
-                            <label for="motif" class="col-md-4 col-form-label text-md-end">{{ __('Motif') }}</label>
+                            <label for="employes_Id" class="col-md-4 col-form-label text-md-end">{{ __('Motif') }}</label>
 
                             <div class="col-md-6">
-                                <input id="motif" type="text" class="form-control @error('motif') is-invalid @enderror" name="motif" value="{{ old('motif') }}" required autocomplete="motif" autofocus>
-
+                               
+                                <textarea id="motif" type="motif" class="form-control @error('motif') is-invalid @enderror" name="motif" value="{{ old('motif') }}" required autocomplete="motif" autofocus rows="5" cols="40"></textarea>
                                 @error('motif')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        
                        
                        
 

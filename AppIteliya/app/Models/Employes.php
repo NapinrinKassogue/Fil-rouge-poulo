@@ -19,4 +19,22 @@ class Employes extends Model
         'password',
         'userId',
        ];
+
+
+       public function absences()
+       {
+           return $this->hasMany(Absences::class, 'employes_Id');
+       }
+
+       public function user()
+       {
+           return $this->belongsTo(User::class, 'userId');
+       }
+
+
+
+       public function permission()
+       {
+           return $this->hasMany(Permissions::class, 'employesId');
+       }
 }
