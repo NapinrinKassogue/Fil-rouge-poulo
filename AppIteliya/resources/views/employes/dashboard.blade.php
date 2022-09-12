@@ -52,11 +52,11 @@
                 </ul>
                
             </ul> -->
-                <li><a class="nav-link scrollto" href="#">Tableau_Récaptulatif</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('pointages.detoulemonde')}}">Tous les Pointages</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('employes.permissionCreate')}}">Demande de Permission</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('absences.absenceCreate')}}">JustifierAbsence</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('pointages.pointagesCreate')}}">Pointages</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('pointages.detoulemonde')}}">Tous les Pointages</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('pointages.pointagesCreate')}}">Pointez ici</a></li>
+                
 
                 
 

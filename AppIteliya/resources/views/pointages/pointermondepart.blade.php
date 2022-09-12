@@ -22,7 +22,7 @@
             </div>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">pointer votre depart</button>
         </form>
 
         <!-- End form -->

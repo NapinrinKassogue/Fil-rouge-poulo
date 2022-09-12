@@ -33,6 +33,11 @@
       position: static;
   }
 
+  h5{
+    text-align: center;
+    
+  }
+
   .icosupp{
     color: red;
     cursor: pointer;
@@ -54,13 +59,24 @@
   .icovoir{
     color:black;
   }
+  .card{
+    margin-top: 150px;
+  }
 
   .icovoir:hover{
    background-color: yellow;
-    
+  }
+  .navbarjust{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    background-color: #14840B;
+
   }
   .listeretour{
-    margin-left: 40%;
+   
     width: 100px;
     height: 30px;
     border-radius: 10px;
@@ -214,6 +230,15 @@ a:hover {
   background-color: #14840B;
 }
 
+
+.navbare ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  background-color: #14840B;
+}
 .navbar li {
   position: relative;
 }
@@ -285,6 +310,7 @@ a:hover {
   color: white;
   position: absolute;
   margin-left: 350px;
+  text-align: center;
 }
 
 .dropdown{

@@ -61,11 +61,12 @@ Route::get('/permissions', [App\Http\Controllers\EmployesController::class,'view
 
 
 Route::get('/absence-register', [App\Http\Controllers\AbsencesController::class, 'viewabsence'])->name('absence');
-Route::post('/register-absence/{id}', [App\Http\Controllers\AbsencesController::class, 'registerabsence'])->name('absence.create');
+Route::post('/register-absence', [App\Http\Controllers\AbsencesController::class, 'registerabsence'])->name('absence.create');
 
 Route::get('/justifierabsence', [App\Http\Controllers\AbsencesController::class, 'listeAbsence'])->name('administrateurs.justifierAbsence');
 Route::get('/absences', [App\Http\Controllers\EmployesController::class,'viewabsence'])->name('absences.absenceCreate');
 Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');
+Route::get('image/{filename}', 'AbsenceController@downfunc')->name('image.displayImage');
 
 
 

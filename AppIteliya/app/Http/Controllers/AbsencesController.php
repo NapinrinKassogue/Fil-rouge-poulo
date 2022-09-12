@@ -9,14 +9,15 @@ use App\Models\JustifierAbsences;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AbsencesController extends Controller
 {
     //
 
-    public function viewabsence($id)
+    public function viewabsence()
     {
-        $user = User::find($id);
+        $user = User::all();
         $justifier = Employes::all();
         return view('absences.absenceCreate', compact('justifier', 'user'));
     }
@@ -53,6 +54,12 @@ class AbsencesController extends Controller
                 );
                 return view('/employes.dashboard');
           }
+    }
+
+    public function downfunc()
+    {
+        $downloads = Absences::all();
+        return view('/administrateurs.justifierAbsence', compact('downloads'));
     }
 
 

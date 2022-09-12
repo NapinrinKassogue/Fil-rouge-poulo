@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absences;
+use App\Models\Administrateur;
 use App\Models\Employes;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -123,7 +124,8 @@ class EmployesController extends Controller
             'poste'=>'required', 
         ]);
         Employes::whereId($id)->update($rafraichir);
-        return redirect('administrateurs.listeEmployes');
+        $listeEmployes = Employes::all();
+        return view('administrateurs.listeEmployes', compact('listeEmployes'));
     }
 
 
